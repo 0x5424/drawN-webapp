@@ -4,15 +4,72 @@
   "description": "bootstrap new svelte project with as few required dependencies",
   "scripts": {
     "start": "vite",
-    "check": "svelte-check"
+    "check": "svelte-check",
+    "lint": "eslint --ext .ts,.svelte web/"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "latest",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
     "esbuild": "*",
+    "eslint": "^8.34.0",
+    "eslint-plugin-svelte3": "^4.0.0",
     "svelte": "latest",
     "svelte-check": "latest",
     "svelte-preprocess": "latest",
     "vite": "latest"
+  },
+  "eslintConfig": {
+    "env": {
+      "es2020": true,
+      "browser": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "extraFileExtensions": [
+        ".svelte"
+      ]
+    },
+    "plugins": [
+      "svelte3",
+      "@typescript-eslint"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.svelte"
+        ],
+        "processor": "svelte3/svelte3"
+      }
+    ],
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "semi": [
+        "error",
+        "never"
+      ]
+    },
+    "settings": {
+      "svelte3/typescript": true
+    }
   },
   "dependencies": {
     "draw-n": "github:0x5424/draw-n"
