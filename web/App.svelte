@@ -1,8 +1,23 @@
 <script lang="ts">
+  // FIXME: (probably esbuild...) imported writable stores are undefined
+  import * as themeUtils from './stores/theme'
+  const { activeTheme, getAutoSetting } = themeUtils
+  import { onMount } from 'svelte'
+
+  const toggleTheme = () => {
+    $activeTheme = $activeTheme == 'dark' ? 'light' : 'dark'
+    document.documentElement.setAttribute('data-theme', $activeTheme)
+  }
+
+  onMount(() => {
+    // Ensure the right attribute is available for CSS selectors
+    const attributeName = $activeTheme == 'auto' ? getAutoSetting() : $activeTheme
+    document.documentElement.setAttribute('data-theme', attributeName)
+  })
 </script>
 
 <main>
-  <h1>draw-n</h1>
+  <button class="bl" on:click={toggleTheme}><h1>draw-n</h1></button>
 </main>
 
 <style>
@@ -38,14 +53,24 @@
     }
   }
 
-  h1 {
+  .bl {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
+    padding: 0;
+  }
+
+  h1 {
     font-weight: 100;
     text-transform: uppercase;
     line-height: 1;
     font-size: 2rem;
     font-weight: 100;
+  }
+
+  button {
+    background-color: rgba(var(--bg),0);
+    outline: none;
+    border: none;
   }
 </style>

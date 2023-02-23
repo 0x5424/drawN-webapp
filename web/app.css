@@ -4,6 +4,7 @@
   --accent: 98, 97, 70;
   color: rgb(var(--fg));
   background-color: rgb(var(--bg));
+  transition: background-color 0.3s;
   --font-main: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   --font-mono: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
@@ -30,6 +31,9 @@ img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
 }
+
+h1, h2, h3, h4, h5, h6 { color: rgba(var(--fg),1); }
+*:not(h1, h2, h3, h4, h5, h6) { color: rgba(var(--fg),0.6); }
 
 input, button, textarea, select { font: inherit; }
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
