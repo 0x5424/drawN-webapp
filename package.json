@@ -13,5 +13,8 @@
     "svelte-check": "latest",
     "svelte-preprocess": "latest",
     "vite": "latest"
+  },
+  "dependencies": {
+    "draw-n": "github:0x5424/draw-n"
   }
 }
