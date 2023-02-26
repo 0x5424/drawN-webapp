@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { noop } from './app'
-
   import { onMount } from 'svelte'
-  import { activeTheme, getAutoSetting } from './stores/theme'
+  import { getAutoSetting } from './stores/theme'
+  import { activeTheme } from './stores/theme'
   import ToggleThemeButton from './ToggleThemeButton.svelte'
 
   let hideToggleButton = false
@@ -17,9 +16,9 @@
     // Ensure the right attribute is available for CSS selectors
     const attributeName = $activeTheme == 'auto' ? getAutoSetting() : $activeTheme
     document.documentElement.setAttribute('data-theme', attributeName)
+    // Ensure theme now matches document value
+    $activeTheme = attributeName
   })
-
-  noop(activeTheme, getAutoSetting, ToggleThemeButton)
 </script>
 
 <main>

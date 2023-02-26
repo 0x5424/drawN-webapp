@@ -1,11 +1,8 @@
 <script lang="ts">
-  import { noop } from './app'
   import { fade } from 'svelte/transition'
 
   export let hideToggleButton = false
   export let toggleTheme: () => void
-
-  noop(fade)
 </script>
 
 {#if !hideToggleButton}
